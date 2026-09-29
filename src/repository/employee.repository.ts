@@ -8,17 +8,14 @@ class EmployeeRepositoy {
     }
 
     async findById(id:string){
-        return await EmployeeModel.findById(id)
+        return await EmployeeModel.findById(id);
     }
 
     async create(employeeData:IEmployee){
-        const newEmploye = new EmployeeModel(employeeData)
-        return await newEmploye.save()
+        const newEmployee = new EmployeeModel(employeeData)
+        return await newEmployee.save();
     }
 
-   
-
-  
-
-
 }
+
+export default EmployeeRepositoy;
