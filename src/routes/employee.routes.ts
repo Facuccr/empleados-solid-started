@@ -1,21 +1,20 @@
 import { Router } from "express";
-import  EmployeeControllers  from "../controllers/employee.controller.ts";
+import { EmployeeController } from "../controllers/employee.controller.ts";
 
+class EmployeeRoutes {
+    router: Router;
 
-class EmployeeRoutes{
-
-    router:Router
-
-    constructor(readonly employeeCtrl: EmployeeControllers = new EmployeeControllers){
+    constructor(readonly employeeCtrl: EmployeeController = new EmployeeController()) {
         this.employeeCtrl = employeeCtrl;
         this.router = Router();
-
+        this.routes();
     }
 
-    routes(){
-        this.router.get('/employee',this.employeeCtrl.findAllEmployees)
+    routes() {
+        this.router.get('/employee', this.employeeCtrl.getAllEmployees);
+        this.router.get('/employee/:id', this.employeeCtrl.getEmployeeById);
+        this.router.post('/employee', this.employeeCtrl.createEmployee);
     }
-
 }
 
-new EmployeeRoutes
+export default new EmployeeRoutes().router;
